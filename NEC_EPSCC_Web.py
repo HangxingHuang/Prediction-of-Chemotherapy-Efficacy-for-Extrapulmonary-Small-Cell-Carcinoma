@@ -2,6 +2,7 @@ import streamlit as st
 from joblib import load
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
+from xgboost import XGBClassifier
 import numpy as np
 import joblib
 from scipy import stats
@@ -22,15 +23,15 @@ def generate_person_icons(filled_count, total_count=100):
     return f"<div style='display: flex; flex-wrap: wrap; width: 480px;'>{icons_html}</div>"
 
 # Load model
-model_path = "d:\\py-data\\xgb_EPSCC_5%_model.joblib"
+model_path = "xgb_EPSCC_5%_model.joblib"
 loaded_model = load(model_path)
 
 # Load saved Scaler
-scaler_path = 'd:\\py-data\\xgb_EPSCC_5%_scaler.joblib'
+scaler_path = 'xgb_EPSCC_5%_scaler.joblib'
 scaler = joblib.load(scaler_path)
 
 # Load validation set predictions
-validation_predictions_path = 'd:\\py-data\\xgb_EPSCC_5%_predictions.npy'
+validation_predictions_path = 'xgb_EPSCC_5%_predictions.npy'
 validation_predictions = np.load(validation_predictions_path)
 if validation_predictions.ndim > 1:
     validation_predictions = validation_predictions.ravel()
